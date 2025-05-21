@@ -1,0 +1,62 @@
+syntax = "proto3";
+package task;
+option go_package = "github.com/your-org/project-protos/proto/task";
+
+// Сущность задача
+message Task {
+  uint32 id = 1;
+  string title = 2;
+}
+
+// Запрос на создание задачи
+message CreateTaskRequest {
+  string title = 1;
+}
+message CreateTaskResponse {
+  Task task = 1;
+}
+
+// Запрос на получение задачи
+message GetTaskRequest {
+  uint32 id = 1;
+}
+message GetTaskResponse {
+  Task task = 1;
+}
+
+// Запрос для получения списка задач
+message ListTasksRequest {
+  int32 page_size = 1;
+  string page_token = 2;
+}
+message ListTasksResponse {
+  repeated Task tasks = 1;
+  string next_page_token = 2;
+  int32 total_count = 3;
+}
+
+// Запрос на обновление задачи
+message UpdateTaskRequest {
+  uint32 id = 1;
+  string title = 2;
+}
+message UpdateTaskResponse {
+  Task task = 1;
+}
+
+// Запрос на удаление задачи
+message DeleteTaskRequest {
+  uint32 id = 1;
+}
+message DeleteTaskResponse {
+  bool success = 1;
+}
+
+// Сервис
+service TaskService {
+  rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
+  rpc GetTask    (GetTaskRequest)    returns (GetTaskResponse);
+  rpc ListTasks  (ListTasksRequest)  returns (ListTasksResponse);
+  rpc UpdateTask (UpdateTaskRequest) returns (UpdateTaskResponse);
+  rpc DeleteTask (DeleteTaskRequest) returns (DeleteTaskResponse);
+}
