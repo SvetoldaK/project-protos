@@ -1,4 +1,4 @@
-module github.com/SvetoldaK/project-prot
+module github.com/SvetoldaK/project-protos
 
 go 1.23.6
 
