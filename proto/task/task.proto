@@ -28,13 +28,10 @@ message GetTaskResponse {
 
 // Запрос для получения списка задач
 message ListTasksRequest {
-  int32 page_size = 1;
-  string page_token = 2;
 }
+
 message ListTasksResponse {
   repeated Task tasks = 1;
-  string next_page_token = 2;
-  int32 total_count = 3;
 }
 
 // Запрос на обновление задачи
@@ -57,13 +54,10 @@ message DeleteTaskResponse {
 // Запрос для получения списка задач пользователя
 message ListTasksByUserRequest {
   uint32 user_id = 1;
-  int32 page_size = 2;
-  string page_token = 3;
 }
+
 message ListTasksByUserResponse {
   repeated Task tasks = 1;
-  string next_page_token = 2;
-  int32 total_count = 3;
 }
 
 // Сервис

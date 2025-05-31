@@ -271,8 +271,6 @@ func (x *GetTaskResponse) GetTask() *Task {
 // Запрос для получения списка задач
 type ListTasksRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	PageSize      int32                  `protobuf:"varint,1,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	PageToken     string                 `protobuf:"bytes,2,opt,name=page_token,json=pageToken,proto3" json:"page_token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -307,25 +305,9 @@ func (*ListTasksRequest) Descriptor() ([]byte, []int) {
 	return file_proto_task_task_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *ListTasksRequest) GetPageSize() int32 {
-	if x != nil {
-		return x.PageSize
-	}
-	return 0
-}
-
-func (x *ListTasksRequest) GetPageToken() string {
-	if x != nil {
-		return x.PageToken
-	}
-	return ""
-}
-
 type ListTasksResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Tasks         []*Task                `protobuf:"bytes,1,rep,name=tasks,proto3" json:"tasks,omitempty"`
-	NextPageToken string                 `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
-	TotalCount    int32                  `protobuf:"varint,3,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -365,20 +347,6 @@ func (x *ListTasksResponse) GetTasks() []*Task {
 		return x.Tasks
 	}
 	return nil
-}
-
-func (x *ListTasksResponse) GetNextPageToken() string {
-	if x != nil {
-		return x.NextPageToken
-	}
-	return ""
-}
-
-func (x *ListTasksResponse) GetTotalCount() int32 {
-	if x != nil {
-		return x.TotalCount
-	}
-	return 0
 }
 
 // Запрос на обновление задачи
@@ -571,8 +539,6 @@ func (x *DeleteTaskResponse) GetSuccess() bool {
 type ListTasksByUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        uint32                 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	PageSize      int32                  `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	PageToken     string                 `protobuf:"bytes,3,opt,name=page_token,json=pageToken,proto3" json:"page_token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -614,25 +580,9 @@ func (x *ListTasksByUserRequest) GetUserId() uint32 {
 	return 0
 }
 
-func (x *ListTasksByUserRequest) GetPageSize() int32 {
-	if x != nil {
-		return x.PageSize
-	}
-	return 0
-}
-
-func (x *ListTasksByUserRequest) GetPageToken() string {
-	if x != nil {
-		return x.PageToken
-	}
-	return ""
-}
-
 type ListTasksByUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Tasks         []*Task                `protobuf:"bytes,1,rep,name=tasks,proto3" json:"tasks,omitempty"`
-	NextPageToken string                 `protobuf:"bytes,2,opt,name=next_page_token,json=nextPageToken,proto3" json:"next_page_token,omitempty"`
-	TotalCount    int32                  `protobuf:"varint,3,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -674,20 +624,6 @@ func (x *ListTasksByUserResponse) GetTasks() []*Task {
 	return nil
 }
 
-func (x *ListTasksByUserResponse) GetNextPageToken() string {
-	if x != nil {
-		return x.NextPageToken
-	}
-	return ""
-}
-
-func (x *ListTasksByUserResponse) GetTotalCount() int32 {
-	if x != nil {
-		return x.TotalCount
-	}
-	return 0
-}
-
 var File_proto_task_task_proto protoreflect.FileDescriptor
 
 const file_proto_task_task_proto_rawDesc = "" +
@@ -707,17 +643,11 @@ const file_proto_task_task_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\rR\x02id\"1\n" +
 	"\x0fGetTaskResponse\x12\x1e\n" +
 	"\x04task\x18\x01 \x01(\v2\n" +
-	".task.TaskR\x04task\"N\n" +
-	"\x10ListTasksRequest\x12\x1b\n" +
-	"\tpage_size\x18\x01 \x01(\x05R\bpageSize\x12\x1d\n" +
-	"\n" +
-	"page_token\x18\x02 \x01(\tR\tpageToken\"~\n" +
+	".task.TaskR\x04task\"\x12\n" +
+	"\x10ListTasksRequest\"5\n" +
 	"\x11ListTasksResponse\x12 \n" +
 	"\x05tasks\x18\x01 \x03(\v2\n" +
-	".task.TaskR\x05tasks\x12&\n" +
-	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\x12\x1f\n" +
-	"\vtotal_count\x18\x03 \x01(\x05R\n" +
-	"totalCount\"9\n" +
+	".task.TaskR\x05tasks\"9\n" +
 	"\x11UpdateTaskRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\"4\n" +
@@ -727,18 +657,12 @@ const file_proto_task_task_proto_rawDesc = "" +
 	"\x11DeleteTaskRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\".\n" +
 	"\x12DeleteTaskResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"m\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"1\n" +
 	"\x16ListTasksByUserRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\rR\x06userId\x12\x1b\n" +
-	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\x12\x1d\n" +
-	"\n" +
-	"page_token\x18\x03 \x01(\tR\tpageToken\"\x84\x01\n" +
+	"\auser_id\x18\x01 \x01(\rR\x06userId\";\n" +
 	"\x17ListTasksByUserResponse\x12 \n" +
 	"\x05tasks\x18\x01 \x03(\v2\n" +
-	".task.TaskR\x05tasks\x12&\n" +
-	"\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\x12\x1f\n" +
-	"\vtotal_count\x18\x03 \x01(\x05R\n" +
-	"totalCount2\x96\x03\n" +
+	".task.TaskR\x05tasks2\x96\x03\n" +
 	"\vTaskService\x12?\n" +
 	"\n" +
 	"CreateTask\x12\x17.task.CreateTaskRequest\x1a\x18.task.CreateTaskResponse\x126\n" +
