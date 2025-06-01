@@ -6,13 +6,13 @@ option go_package = "github.com/your-org/project-protos/proto/task";
 message Task {
   uint32 id = 1;
   string title = 2;
-  uint32 user_id = 3;
+  uint32 userId = 3;
 }
 
 // Запрос на создание задачи
 message CreateTaskRequest {
   string title = 1;
-  uint32 user_id = 2;
+  uint32 userId = 2;
 }
 message CreateTaskResponse {
   Task task = 1;
@@ -53,7 +53,7 @@ message DeleteTaskResponse {
 
 // Запрос для получения списка задач пользователя
 message ListTasksByUserRequest {
-  uint32 user_id = 1;
+  uint32 userId = 1;
 }
 
 message ListTasksByUserResponse {
